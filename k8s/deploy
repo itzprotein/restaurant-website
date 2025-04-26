@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     app: restaurant
   name: restaurant
-  namespace: adeola-ns
+  namespace: adeola
 spec:
   replicas: 1
   selector:
@@ -13,13 +14,14 @@ spec:
   strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: restaurant
     spec:
       containers:
       - image: IMAGE_NAME
-        name: restaurant
-        ports: 
-        - containerPort: 80
+        name: IMAGE-NAME-rgm5s
+        ports:
+        - containerPort: 5000
         resources: {}
 status: {}

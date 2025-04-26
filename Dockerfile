@@ -1,6 +1,7 @@
-FROM python:3.13-slim
-WORKDIR /app
-COPY . .
-RUN pip install
-EXPOSE 5000
-CMD ["python", "app.py"]
+FROM nginx:alpine
+
+COPY ./static /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
