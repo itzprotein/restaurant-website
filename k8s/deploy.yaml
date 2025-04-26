@@ -19,7 +19,7 @@ spec:
       containers:
       - image: IMAGE_NAME
         name: restaurant
-        ports:
-        - containerPort: 5000
+        ports: 
+        - containerPort: 80
         resources: {}
 status: {}
