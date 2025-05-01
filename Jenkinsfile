@@ -7,12 +7,15 @@ pipeline {
         CONTAINER_NAME = "adeola-restaurant"
         ENV_NAME = "dev"
         VERSION_NAME = "v-0.0.${BUILD_NUMBER}"
+        SCANNER_HOME = tool 'sonar-scanner'
     }
     
     stages {
-        stage('Git Checkout') {
+        stage('SonarQube scan') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/itzprotein/restaurant-website.git']])
+                withSonarQubeEnv('sonar-server') {
+                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Abraham-restaurant -Dsonar.projectName=Abraham-restaurant"
+                }
             }
         }
         stage("Docker Build") {
